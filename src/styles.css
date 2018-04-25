@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+* {
+  border-radius: 0 !important;
+}
+
+* {
+	font-size: 15px;
+}
+
+.editar {
+  width: 80px;
+}
+
+thead { 
+  background-color: #f5f5f5; 
+  border-bottom: 4px solid #bdbdbd;   
+}
+

@@ -1,0 +1,32 @@
+<h3>{{ titulo }}</h3>
+<p>{{ subtitulo }}</p>
+<hr>
+<form [formGroup]="form" (ngSubmit)="actualizarProveedor()" novalidate>
+  <div class="form-group">
+	<div class="col-sm-3">    
+      <label for="nombre">Nombre del proveedor</label>
+    </div>
+    <div class="col-sm-6">
+      <input 
+      	type="text" 
+      	class="form-control" 
+      	formControlName="nombre" 
+      	autocomplete="off" 
+      	autofocus
+      	(keyup.esc)="volver()"
+        placeholder="Nombre completo del proveedor (requerido)">  
+	      <div *ngIf="nombre.errors && (nombre.dirty || nombre.touched)">	    	
+	  	    <div class="text-danger" *ngIf="nombre.errors.required">{{ validacionNombreRequired }}</div>	
+	  	    <div class="text-danger" *ngIf="nombre.errors.minlength">{{ validacionNombreMinlength }}</div>
+	      </div>
+		</div>
+  </div>  
+  <div class="col-sm-offset-2 col-sm-10">				
+  	<button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+  		<i class="fa fa-plus"></i>{{ guardarCambios }}
+  	</button>  
+  	<a class="btn btn-danger" [routerLink]="['/proveedores']"> 
+  		<i class="fa fa-undo"></i> Cancelar
+  	</a> 	  	
+  </div>
+</form>
