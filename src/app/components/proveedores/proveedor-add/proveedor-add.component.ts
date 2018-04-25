@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router'
+import { Title } from '@angular/platform-browser'
 
 import { ProveedoresService } from '../../../services/proveedores.service'
 import { TextosService } from '../../../services/textos.service'
 import { ToastrService } from 'ngx-toastr'
-import swal from 'sweetalert'
+import * as swal from 'sweetalert'
 
 @Component({
   selector: 'app-proveedor-add',
@@ -16,11 +17,13 @@ export class ProveedorAddComponent implements OnInit {
   private titulo   : string
   private subtitulo: string
   private registrar: string
+  private cancelar : string
   private validacionNombreRequired : string
   private validacionNombreMinlength: string  
 
   constructor(private fb: FormBuilder, 
               private router: Router,
+              private titleService: Title,
               private servicio: ProveedoresService,               
               private alert: ToastrService) {}
 
@@ -28,11 +31,14 @@ export class ProveedorAddComponent implements OnInit {
       this.form = this.fb.group({
         'nombre': [null, [Validators.required, Validators.minLength(3)]]
       });
-      this.titulo    = "Registrar un nuevo proveedor"
-      this.subtitulo = "A continuación podrás registrar un nuevo proveedor. No se permite duplicar proveedores."
-      this.validacionNombreRequired  = "Este campo es requerido"
-      this.validacionNombreMinlength = "Este campo debe tener una longitud mínima de 3 caracteres"
+
+      this.titleService.setTitle(TextosService.TITULO_PAGINA_NUEVO_PROVEEDOR)      
+      this.titulo    = TextosService.TITULO_PAGINA_NUEVO_PROVEEDOR
+      this.subtitulo = TextosService.SUBTITULO_PAGINA_NUEVO_PROVEEDOR
       this.registrar = TextosService.REGISTRAR_PROVEEDOR      
+      this.cancelar  = TextosService.CANCELAR
+      this.validacionNombreRequired  = TextosService.VALIDACION_CAMPO_REQUERIDO
+      this.validacionNombreMinlength = TextosService.VALIDACION_CAMPO_MINIMO_3    
     }
 
   get nombre() {
@@ -55,8 +61,13 @@ export class ProveedorAddComponent implements OnInit {
           this.form.reset()                      
         },
         (err) => {
-          console.log(err)          
-          swal(TextosService.ATENCION, TextosService.IMPOSIBLE_COMPLETAR_ACCION, "error")          
+          console.log(err)                                        
+          swal({
+            title : TextosService.ATENCION,
+            text  : err.error.mensaje,
+            icon  : TextosService.SWAL_ERROR,
+            button: TextosService.ACEPTAR
+          })        
         }
       )  	
   } 

@@ -5,8 +5,8 @@
 <p>
 	{{ subtitulo }}	   
 	<span class="float-right">
-		<a [routerLink]="['/proveedores-add']" class="btn btn-primary">
-		<i class="fa fa-plus"></i> Registrar un nuevo proveedor</a>
+		<a [routerLink]="['/proveedores/add']" class="btn btn-primary">
+			<i class="fa fa-plus"></i> Registrar un nuevo proveedor</a>
 	</span>		
 </p>
 <hr class="mt-4">
@@ -28,7 +28,7 @@
 	<tbody>
 		<tr *ngFor="let proveedor of proveedores">
 			<td class="text-center">
-				<a class="btn btn-primary" [routerLink]="['/proveedores-edit', proveedor._id]">
+				<a class="btn btn-primary" routerLink='/proveedores/{{proveedor._id}}/edit'>
 					<i class="fa fa-bars"></i>
 				</a>
 			</td>
@@ -46,3 +46,4 @@
 	</button>
 </div>
 </ng-template>
+			

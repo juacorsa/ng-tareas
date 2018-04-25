@@ -7,9 +7,9 @@ import { ProveedorListComponent } from './components/proveedores/proveedor-list/
 import { NotFoundComponent } from './components/notfound/notfound.component'
 
 const routes: Routes = [
-	{ path: 'proveedores', component: ProveedorListComponent },
-	{ path: 'proveedores-add', component: ProveedorAddComponent },
-	{ path: 'proveedores-edit/:id', component: ProveedorEditComponent },
+	{ path: 'proveedores', component: ProveedorListComponent },	
+	{ path: 'proveedores/:id/edit', component: ProveedorEditComponent },
+	{ path: 'proveedores/add', component: ProveedorAddComponent },
 	{ path: '', redirectTo: 'proveedores', pathMatch: 'full'},
 	{ path: '**', component: NotFoundComponent }
 ];

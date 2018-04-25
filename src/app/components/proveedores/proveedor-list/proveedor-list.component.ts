@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Subscription } from 'rxjs/Subscription'
+import { Title } from '@angular/platform-browser'
 
 import { ProveedoresService } from '../../../services/proveedores.service'
 import { Proveedor } from '../../../models/proveedor.interface'
@@ -10,8 +11,8 @@ import { TextosService } from '../../../services/textos.service'
   templateUrl: './proveedor-list.component.html'  
 })
 export class ProveedorListComponent implements OnInit, OnDestroy {    
-  private titulo      : string = "Mantenimiento de proveedores"
-  private subtitulo   : string = "A continuación se muestran todos los proveedores registrados en la base de datos, ordenados alfabéticamente."
+  private titulo      : string = TextosService.TITULO_PAGINA_PROVEEDORES
+  private subtitulo   : string = TextosService.SUBTITULO_PAGINA_PROVEEDORES
   private proveedores : Proveedor[] = []
   private subscription: Subscription  
   private sinDatos    : string  = ""
@@ -19,9 +20,10 @@ export class ProveedorListComponent implements OnInit, OnDestroy {
   private total       : number  = 0
   private desde       : number  = 0
 
-  constructor(private servicio: ProveedoresService) { }
+  constructor(private servicio: ProveedoresService, private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle(TextosService.TITULO_PAGINA_PROVEEDORES)   
   	this.sinDatos = TextosService.SIN_DATOS
   	this.obtenerProveedores()
   }
@@ -66,6 +68,5 @@ export class ProveedorListComponent implements OnInit, OnDestroy {
     this.desde += valor
     this.obtenerProveedores()
   }
-
 }
 

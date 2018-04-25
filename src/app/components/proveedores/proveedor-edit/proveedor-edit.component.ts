@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router'
+import { Title } from '@angular/platform-browser'
 
 import { ProveedoresService } from '../../../services/proveedores.service'
 import { TextosService } from '../../../services/textos.service'
@@ -16,6 +17,7 @@ export class ProveedorEditComponent implements OnInit {
   private titulo   : string
   private subtitulo: string
   private proveedor: string
+  private cancelar : string
   private id: string  
   private validacionNombreRequired : string
   private validacionNombreMinlength: string
@@ -23,6 +25,7 @@ export class ProveedorEditComponent implements OnInit {
 
   constructor(private fb: FormBuilder, 
               private router: Router,
+              private titleService: Title,
               private activatedRoute: ActivatedRoute,
   	          private servicio: ProveedoresService, 
   	          private alert: ToastrService) {
@@ -42,10 +45,12 @@ export class ProveedorEditComponent implements OnInit {
           this.form.controls['nombre'].setValue(res.proveedor.nombre)
         })    
 
-      this.titulo    = "Actualizar proveedor"
-      this.subtitulo = "A continuación podrás actualizar el proveedor seleccionado. No se permite duplicar proveedores."
-      this.validacionNombreRequired  = "Este campo es requerido"
-      this.validacionNombreMinlength = "Este campo debe tener una longitud mínima de 3 caracteres"
+      this.titleService.setTitle(TextosService.TITULO_PAGINA_EDITAR_PROVEEDOR)   
+      this.titulo    = TextosService.TITULO_PAGINA_EDITAR_PROVEEDOR
+      this.subtitulo = TextosService.SUBTITULO_PAGINA_EDITAR_PROVEEDOR
+      this.cancelar  = TextosService.CANCELAR      
+      this.validacionNombreRequired  = TextosService.VALIDACION_CAMPO_REQUERIDO
+      this.validacionNombreMinlength = TextosService.VALIDACION_CAMPO_MINIMO_3
       this.guardarCambios = TextosService.GUARDAR_CAMBIOS
   }
 
@@ -69,8 +74,13 @@ export class ProveedorEditComponent implements OnInit {
           this.volver()
         },
         (err) => {
-          console.log(err)
-          this.alert.error(err.error.mensaje, TextosService.ERROR)
+          console.log(err)          
+          swal({
+            title : TextosService.ATENCION,
+            text  : err.error.mensaje,
+            icon  : TextosService.SWAL_ERROR,
+            button: TextosService.ACEPTAR
+          })          
         }
       )    	
   }
