@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router'
 import { Title } from '@angular/platform-browser'
@@ -61,13 +61,13 @@ export class ProveedorAddComponent implements OnInit {
           this.form.reset()                      
         },
         (err) => {
-          console.log(err)                                        
+          console.log(err)                                                          
           swal({
             title : TextosService.ATENCION,
             text  : err.error.mensaje,
             icon  : TextosService.SWAL_ERROR,
             button: TextosService.ACEPTAR
-          })        
+          })
         }
       )  	
   } 

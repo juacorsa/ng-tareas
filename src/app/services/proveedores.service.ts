@@ -3,7 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs/Observable'
 
 import { environment } from '../../environments/environment'
-import { Proveedor } from '../models/proveedor.interface'
+import { Proveedor } from '../models/proveedor.model'
 
 @Injectable()
 export class ProveedoresService {
@@ -11,12 +11,8 @@ export class ProveedoresService {
   
   constructor(private http: HttpClient) { }
 
-  obtenerProveedores(): Observable<Proveedor[]> {
-  	return this.http.get<Proveedor[]>(`${environment.api}/proveedores`)      
-  }
-
-  getProveedores(desde: number = 0) {
- 	  return this.http.get(`${environment.api}/proveedores?desde=${desde}`)      
+  obtenerProveedores(desde: number = 0): Observable<Proveedor[]> {
+ 	  return this.http.get<Proveedor[]>(`${environment.api}/proveedores?desde=${desde}`)      
   }
 
   obtenerProveedor(id: string) {
@@ -27,14 +23,13 @@ export class ProveedoresService {
   	return this.http.post<Proveedor>(`${environment.api}/proveedores`, proveedor, this.headers)
   }
 
-  searchProveedores(termino: string) {
+  buscarProveedores(termino: string) {
     return this.http.get(`${environment.api}/proveedores/buscar/${termino}`)      
   }
 
   actualizarProveedor(id: string, proveedor: Proveedor): Observable<Proveedor> {
     return this.http.put<Proveedor>(`${environment.api}/proveedores/${id}`, proveedor, this.headers)
   }
-
 }
 
 

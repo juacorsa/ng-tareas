@@ -6,7 +6,8 @@ import { Title } from '@angular/platform-browser'
 import { ProveedoresService } from '../../../services/proveedores.service'
 import { TextosService } from '../../../services/textos.service'
 import { ToastrService } from 'ngx-toastr'
-import { Proveedor } from '../../../models/proveedor.interface'
+import { Proveedor } from '../../../models/proveedor.model'
+import * as swal from 'sweetalert'
 
 @Component({
   selector: 'app-proveedor-edit',
@@ -74,13 +75,13 @@ export class ProveedorEditComponent implements OnInit {
           this.volver()
         },
         (err) => {
-          console.log(err)          
+          console.log(err)                    
           swal({
             title : TextosService.ATENCION,
             text  : err.error.mensaje,
             icon  : TextosService.SWAL_ERROR,
             button: TextosService.ACEPTAR
-          })          
+          })
         }
       )    	
   }

@@ -7,7 +7,9 @@ exports.createSoftware = (req, res, next) => {
 	const { error } = validarSoftware(req.body);	
 	if (error) return res.status(400).send(error.details[0].message);		
 	
-	const nombre = req.body.nombre;
+	const nombre = req.body.nombre.trim();
+	const regex = new RegExp(nombre, 'i');
+
 	Software.find({nombre: nombre})
 	  .exec()
 	  .then(software => {

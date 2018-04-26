@@ -7,7 +7,9 @@ exports.createCliente = (req, res, next) => {
 	const { error } = validarCliente(req.body);	
 	if (error) return res.status(400).send(error.details[0].message);		
 	
-	const nombre = req.body.nombre;
+	const nombre = req.body.nombre.trim();
+	const regex = new RegExp(nombre, 'i');
+
 	Cliente.find({nombre: nombre})
 	  .exec()
 	  .then(cliente => {

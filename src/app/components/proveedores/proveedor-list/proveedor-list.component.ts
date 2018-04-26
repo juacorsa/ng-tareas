@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs/Subscription'
 import { Title } from '@angular/platform-browser'
 
 import { ProveedoresService } from '../../../services/proveedores.service'
-import { Proveedor } from '../../../models/proveedor.interface'
+import { Proveedor } from '../../../models/proveedor.model'
 import { TextosService } from '../../../services/textos.service'
 
 @Component({
@@ -29,7 +29,7 @@ export class ProveedorListComponent implements OnInit, OnDestroy {
   }
 
   obtenerProveedores() {
-  	this.subscription = this.servicio.getProveedores(this.desde)
+  	this.subscription = this.servicio.obtenerProveedores(this.desde)
   		.subscribe(
   			(res: any) => {                   
   				this.proveedores = res.proveedores  			
@@ -50,7 +50,7 @@ export class ProveedorListComponent implements OnInit, OnDestroy {
       return
     }
 
-    this.subscription = this.servicio.searchProveedores(termino)
+    this.subscription = this.servicio.buscarProveedores(termino)
       .subscribe(
         (res: any) => {                   
           this.proveedores = res.proveedores        
