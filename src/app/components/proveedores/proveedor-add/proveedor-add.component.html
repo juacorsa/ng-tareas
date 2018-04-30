@@ -15,7 +15,7 @@
       	autocomplete="off" 
       	autofocus
         (keyup.esc)="volver()"
-        placeholder="Nombre completo del proveedor (requerido)">  
+        placeholder="{{ placeholder }}">  
 	      <div *ngIf="nombre.errors && (nombre.dirty || nombre.touched)">	    	
 	  	    <div class="text-danger" *ngIf="nombre.errors.required">{{ validacionNombreRequired }}</div>	
 	  	    <div class="text-danger" *ngIf="nombre.errors.minlength">{{ validacionNombreMinlength }}</div>

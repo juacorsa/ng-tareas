@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core'
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
-import { Router, ActivatedRoute } from '@angular/router'
-import { Title } from '@angular/platform-browser'
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser',
 
-import { ProveedoresService } from '../../../services/proveedores.service'
-import { TextosService } from '../../../services/textos.service'
-import { ToastrService } from 'ngx-toastr'
-import { Proveedor } from '../../../models/proveedor.model'
-import * as swal from 'sweetalert'
+import { ProveedoresService } from '../../../services/proveedores.service';
+import { TextosService } from '../../../services/textos.service';
+import { ToastrService } from 'ngx-toastr';
+import { Proveedor } from '../../../models/proveedor.model';
 
 @Component({
   selector: 'app-proveedor-edit',
@@ -19,6 +18,7 @@ export class ProveedorEditComponent implements OnInit {
   private subtitulo: string
   private proveedor: string
   private cancelar : string
+  private placeholder: string;
   private id: string  
   private validacionNombreRequired : string
   private validacionNombreMinlength: string
@@ -39,20 +39,21 @@ export class ProveedorEditComponent implements OnInit {
   ngOnInit() {     
       this.form = this.fb.group({
         'nombre': ['', [Validators.required, Validators.minLength(3)]]
-      })
+      });
       
       this.servicio.obtenerProveedor(this.id)
         .subscribe((res: any) => {             
           this.form.controls['nombre'].setValue(res.proveedor.nombre)
-        })    
+        });
 
-      this.titleService.setTitle(TextosService.TITULO_PAGINA_EDITAR_PROVEEDOR)   
-      this.titulo    = TextosService.TITULO_PAGINA_EDITAR_PROVEEDOR
-      this.subtitulo = TextosService.SUBTITULO_PAGINA_EDITAR_PROVEEDOR
-      this.cancelar  = TextosService.CANCELAR      
-      this.validacionNombreRequired  = TextosService.VALIDACION_CAMPO_REQUERIDO
-      this.validacionNombreMinlength = TextosService.VALIDACION_CAMPO_MINIMO_3
-      this.guardarCambios = TextosService.GUARDAR_CAMBIOS
+      this.titleService.setTitle(TextosService.TITULO_PAGINA_EDITAR_PROVEEDOR);
+      this.titulo    = TextosService.TITULO_PAGINA_EDITAR_PROVEEDOR;
+      this.subtitulo = TextosService.SUBTITULO_PAGINA_EDITAR_PROVEEDOR;
+      this.cancelar  = TextosService.CANCELAR;
+      this.validacionNombreRequired  = TextosService.VALIDACION_CAMPO_REQUERIDO;
+      this.validacionNombreMinlength = TextosService.VALIDACION_CAMPO_MINIMO_3;
+      this.guardarCambios = TextosService.GUARDAR_CAMBIOS;
+      this.placeholder = TextosService.PLACEHOLDER_NOMBRE_PROVEEDOR;      
   }
 
   volver() {
@@ -76,12 +77,13 @@ export class ProveedorEditComponent implements OnInit {
         },
         (err) => {
           console.log(err)                    
-          swal({
+          /*
+          sweetalert({
             title : TextosService.ATENCION,
             text  : err.error.mensaje,
             icon  : TextosService.SWAL_ERROR,
             button: TextosService.ACEPTAR
-          })
+          })*/
         }
       )    	
   }

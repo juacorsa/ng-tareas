@@ -21,9 +21,11 @@ export class TextosService {
   static SUBTITULO_PAGINA_EDITAR_PROVEEDOR: string = "A continuación podrás actualizar los datos del proveedor seleccionado. No se permite duplicar proveedores."
   static TITULO_PAGINA_PROVEEDORES        : string = "Mantenimiento de proveedores"
   static SUBTITULO_PAGINA_PROVEEDORES     : string = "A continuación se muestran todos los proveedores registrados en la base de datos, ordenados alfabéticamente."
+  static PLACEHOLDER_NOMBRE_PROVEEDOR     : string = "Nombre completo del proveedor (requerido)"
   static PROVEEDOR_REGISTRADO  : string = "El proveedor se ha registrado correctamente"
   static PROVEEDOR_ACTUALIZADO : string = "El proveedor se ha actualizado correctamente"
   static REGISTRAR_PROVEEDOR   : string = " Registrar proveedor"
+
 
   // Textos de clientes
   static TITULO_PAGINA_NUEVO_CLIENTE    : string = "Registrar un nuevo cliente"
@@ -32,6 +34,7 @@ export class TextosService {
   static SUBTITULO_PAGINA_EDITAR_CLIENTE: string = "A continuación podrás actualizar los datos del cliente seleccionado. No se permite duplicar clientes."
   static TITULO_PAGINA_CLIENTES         : string = "Mantenimiento de clientes"
   static SUBTITULO_PAGINA_CLIENTES      : string = "A continuación se muestran todos los clientes registrados en la base de datos, ordenados alfabéticamente."
+  static PLACEHOLDER_NOMBRE_CLIENTE     : string = "Nombre completo del cliente (requerido)"
   static CLIENTE_REGISTRADO  : string = "El cliente se ha registrado correctamente"
   static CLIENTE_ACTUALIZADO : string = "El cliente se ha actualizado correctamente"
   static REGISTRAR_CLIENTE   : string = " Registrar cliente"
@@ -43,6 +46,7 @@ export class TextosService {
   static SUBTITULO_PAGINA_EDITAR_SOFTWARE: string = "A continuación podrás actualizar los datos del software seleccionado. No se permite duplicar software."
   static TITULO_PAGINA_SOFTWARE         : string = "Mantenimiento de software"
   static SUBTITULO_PAGINA_SOFTWARE      : string = "A continuación se muestran todos los software registrados en la base de datos, ordenados alfabéticamente."
+  static PLACEHOLDER_NOMBRE_SOFTWARE    : string = "Nombre completo del software (requerido)"  
   static SOFTWARE_REGISTRADO  : string = "El software se ha registrado correctamente"
   static SOFTWARE_ACTUALIZADO : string = "El software se ha actualizado correctamente"
   static REGISTRAR_SOFTWARE   : string = " Registrar software"

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 const Util = require('../util');
+const config = require('../config');
 const Cliente = require("../models/cliente");
 
 exports.createCliente = (req, res, next) => {
@@ -46,7 +47,7 @@ exports.getClientes = (req, res, next) => {
 		.select('nombre')
 		.sort('nombre')
 		.skip(desde)
-		.limit(5)
+		.limit(config.clientes_por_pagina)
 		.exec()
 		.then(clientes => {
 			Cliente.count({}, (err, total) => {
@@ -95,6 +96,32 @@ exports.updateCliente = (req, res, next) => {
     		console.log(err);
 			res.status(500).json({error: err})
 		});  	
+}
+
+exports.searchClientes = (req, res, next) => {
+	let desde = req.query.desde || 0;
+    desde = Number(desde);
+	const termino = req.params.termino;
+	const regex = new RegExp(termino, 'i');
+
+	Cliente.find({'nombre': regex})		
+		.select('nombre')
+		.sort('nombre')
+		.skip(desde)
+		.limit(config.clientes_por_pagina)
+		.exec()
+		.then(clientes => {
+			Cliente.count({}, (err, total) => {
+				res.status(200).json({				
+					total,
+				    clientes
+				})			
+			})			
+		})
+  		.catch(err => {
+  			console.log(err);
+  			res.status(500).json({error: err})
+  		});
 }
 
 function validarCliente(cliente) {

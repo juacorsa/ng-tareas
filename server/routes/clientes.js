@@ -11,4 +11,6 @@ router.get("/:id", ClientesController.getCliente);
 
 router.put("/:id", ClientesController.updateCliente);
 
+router.get("/buscar/:termino", ClientesController.searchClientes);
+
 module.exports = router;

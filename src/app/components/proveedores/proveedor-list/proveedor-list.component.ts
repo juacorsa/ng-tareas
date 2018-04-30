@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'
-import { Subscription } from 'rxjs/Subscription'
-import { Title } from '@angular/platform-browser'
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { Title } from '@angular/platform-browser';
 
-import { ProveedoresService } from '../../../services/proveedores.service'
-import { Proveedor } from '../../../models/proveedor.model'
-import { TextosService } from '../../../services/textos.service'
+import { ProveedoresService } from '../../../services/proveedores.service';
+import { Proveedor } from '../../../models/proveedor.model';
+import { TextosService } from '../../../services/textos.service';
 
 @Component({
   selector: 'app-proveedor-list',

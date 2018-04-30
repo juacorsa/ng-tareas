@@ -6,7 +6,6 @@ import { Title } from '@angular/platform-browser'
 import { ProveedoresService } from '../../../services/proveedores.service'
 import { TextosService } from '../../../services/textos.service'
 import { ToastrService } from 'ngx-toastr'
-import * as swal from 'sweetalert'
 
 @Component({
   selector: 'app-proveedor-add',
@@ -18,6 +17,7 @@ export class ProveedorAddComponent implements OnInit {
   private subtitulo: string
   private registrar: string
   private cancelar : string
+  private placeholder: string;
   private validacionNombreRequired : string
   private validacionNombreMinlength: string  
 
@@ -32,13 +32,14 @@ export class ProveedorAddComponent implements OnInit {
         'nombre': [null, [Validators.required, Validators.minLength(3)]]
       });
 
-      this.titleService.setTitle(TextosService.TITULO_PAGINA_NUEVO_PROVEEDOR)      
-      this.titulo    = TextosService.TITULO_PAGINA_NUEVO_PROVEEDOR
-      this.subtitulo = TextosService.SUBTITULO_PAGINA_NUEVO_PROVEEDOR
-      this.registrar = TextosService.REGISTRAR_PROVEEDOR      
-      this.cancelar  = TextosService.CANCELAR
-      this.validacionNombreRequired  = TextosService.VALIDACION_CAMPO_REQUERIDO
-      this.validacionNombreMinlength = TextosService.VALIDACION_CAMPO_MINIMO_3    
+      this.titleService.setTitle(TextosService.TITULO_PAGINA_NUEVO_PROVEEDOR);
+      this.titulo    = TextosService.TITULO_PAGINA_NUEVO_PROVEEDOR;
+      this.subtitulo = TextosService.SUBTITULO_PAGINA_NUEVO_PROVEEDOR;
+      this.registrar = TextosService.REGISTRAR_PROVEEDOR;
+      this.cancelar  = TextosService.CANCELAR;
+      this.placeholder = TextosService.PLACEHOLDER_NOMBRE_PROVEEDOR;
+      this.validacionNombreRequired  = TextosService.VALIDACION_CAMPO_REQUERIDO;
+      this.validacionNombreMinlength = TextosService.VALIDACION_CAMPO_MINIMO_3;  
     }
 
   get nombre() {
@@ -62,12 +63,13 @@ export class ProveedorAddComponent implements OnInit {
         },
         (err) => {
           console.log(err)                                                          
-          swal({
+          /*
+          sweetalert({
             title : TextosService.ATENCION,
             text  : err.error.mensaje,
             icon  : TextosService.SWAL_ERROR,
             button: TextosService.ACEPTAR
-          })
+          })*/
         }
       )  	
   } 
