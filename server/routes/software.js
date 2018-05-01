@@ -11,4 +11,6 @@ router.get("/:id", SoftwareController.getSoftware);
 
 router.put("/:id", SoftwareController.updateSoftware);
 
+router.get("/buscar/:termino", SoftwareController.searchSoftware);
+
 module.exports = router;

@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 import { Cliente } from '../models/cliente.model';
 
-
 @Injectable()
 export class ClientesService {
   private headers = {headers: new HttpHeaders({"Content-Type": "application/json"})}

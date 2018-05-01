@@ -7,7 +7,6 @@ import { ClientesService } from '../../../services/clientes.service'
 import { TextosService } from '../../../services/textos.service';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
   selector: 'app-cliente-add',
   templateUrl: './cliente-add.component.html',

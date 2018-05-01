@@ -2,6 +2,11 @@
 
 Este proyecto se ha generado con [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
+## Commit 5 - 01-05-2018
+
+Se termina el crud de software  
+Se instala Jquery via npm para poder mostrar errores modales
+
 ## Commit 4 - 30-04-2018
 
 Se termina el crud de cliente  

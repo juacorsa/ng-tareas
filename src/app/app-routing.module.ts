@@ -10,11 +10,9 @@ import { ClienteListComponent } from './components/clientes/cliente-list/cliente
 import { SoftwareAddComponent } from './components/software/software-add/software-add.component'
 import { SoftwareEditComponent } from './components/software/software-edit/software-edit.component'
 import { SoftwareListComponent } from './components/software/software-list/software-list.component'
-
 import { LicenciaAddComponent } from './components/licencias/licencia-add/licencia-add.component'
 import { LicenciaEditComponent } from './components/licencias/licencia-edit/licencia-edit.component'
 import { LicenciaListComponent } from './components/licencias/licencia-list/licencia-list.component'
-
 import { NotFoundComponent } from './components/notfound/notfound.component'
 
 const routes: Routes = [

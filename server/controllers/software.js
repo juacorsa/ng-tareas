@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 const Util = require('../util');
+const config = require('../config');
 const Software = require("../models/software");
 
 exports.createSoftware = (req, res, next) => {
@@ -39,16 +40,22 @@ exports.createSoftware = (req, res, next) => {
 }
 
 exports.getSoftwares = (req, res, next) => {
+	var desde = req.query.desde || 0;
+    desde = Number(desde);
+
 	Software.find()
-		.select('nombre _id')
+		.select('nombre')
 		.sort('nombre')
+		.skip(desde)
+		.limit(config.software_por_pagina)
 		.exec()
-		.then(sotfware => {
-			const respuesta = {
-				count: sotfware.length,
-				sotfware
-			}
-			res.status(200).json(respuesta);
+		.then(softwares => {
+			Software.count({}, (err, total) => {
+				res.status(200).json({				
+					total,
+					softwares
+				})			
+			})
 		})
   		.catch(err => {
   			console.log(err);
@@ -61,9 +68,9 @@ exports.getSoftware = (req, res, next) => {
 	Software.findById(id)
 		.select('_id nombre')
 		.exec()
-		.then(sotfware => {
-			if (sotfware) 
-				res.status(200).json({sotfware})
+		.then(software => {
+			if (software) 
+				res.status(200).json({software})
 			else 
 				res.status(404).json({mensaje: 'Sotfware no encontrado'})				
 		})
@@ -88,6 +95,32 @@ exports.updateSoftware = (req, res, next) => {
     	console.log(err);
 		res.status(500).json({error: err})
 	});  	
+}
+
+exports.searchSoftware = (req, res, next) => {
+	let desde = req.query.desde || 0;
+    desde = Number(desde);
+	const termino = req.params.termino;
+	const regex = new RegExp(termino, 'i');
+
+	Software.find({'nombre': regex})		
+		.select('nombre')
+		.sort('nombre')
+		.skip(desde)
+		.limit(config.software_por_pagina)
+		.exec()
+		.then(software => {
+			Software.count({}, (err, total) => {
+				res.status(200).json({				
+					total,
+				    software
+				})			
+			})			
+		})
+  		.catch(err => {
+  			console.log(err);
+  			res.status(500).json({error: err})
+  		});
 }
 
 function validarSoftware(sotfware) {

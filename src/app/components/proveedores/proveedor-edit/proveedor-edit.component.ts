@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Title } from '@angular/platform-browser',
+import { Title } from '@angular/platform-browser';
 
 import { ProveedoresService } from '../../../services/proveedores.service';
 import { TextosService } from '../../../services/textos.service';

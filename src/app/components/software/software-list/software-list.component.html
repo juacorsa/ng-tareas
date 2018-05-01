@@ -1,3 +1,49 @@
+
+<h3>
+	{{ titulo }} ({{ total }})
+</h3>
 <p>
-  software-list works!
+	{{ subtitulo }}	   
+	<span class="float-right">
+		<a [routerLink]="['/software/add']" class="btn btn-primary">
+			<i class="fa fa-plus"></i> Registrar un nuevo software</a>
+	</span>		
 </p>
+<hr class="mt-4">
+<div class="col-md-3 mb-4">
+	<input type="text" autofocus #input (keyup.enter)="buscarSoftware(input.value)" class="form-control" placeholder="Buscar software ..." />
+</div>
+<div *ngIf="!hayDatos; else template">
+  {{ sinDatos }}
+</div>
+<ng-template #template>
+<div class="col-md-5">	
+	<table class="table table-hover table-bordered">
+	<thead class="thead-light">
+		<tr>
+			<td class="editar text-center">Editar</td>
+			<td>Software</td>						
+		</tr>			
+	</thead>
+	<tbody>
+		<tr *ngFor="let software of softwares">
+			<td class="text-center">
+				<a class="btn btn-primary" routerLink='/software/{{software._id}}/edit'>
+					<i class="fa fa-bars"></i>
+				</a>
+			</td>
+			<td>{{software.nombre}}</td>
+		</tr>		
+	</tbody>
+	</table>
+</div>
+<div class="col-md-6">	
+	<button class="btn btn-dark" (click)="actualizarDesde(-8)">
+		<i class="fa fa-arrow-circle-left"></i> Anterior
+	</button>
+	<button class="btn btn-dark" (click)="actualizarDesde(8)">
+		<i class="fa fa-arrow-alt-circle-right"></i> Siguiente
+	</button>
+</div>
+</ng-template>
+			

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Title } from '@angular/platform-browser',
+import { Title } from '@angular/platform-browser';
 
 import { ClientesService } from '../../../services/clientes.service';
 import { TextosService } from '../../../services/textos.service';
@@ -36,7 +36,7 @@ export class ClienteEditComponent implements OnInit {
     })
   }
 
-  ngOnInit() {     
+  ngOnInit(): void {     
       this.titleService.setTitle(TextosService.TITULO_PAGINA_EDITAR_CLIENTE);
       this.titulo    = TextosService.TITULO_PAGINA_EDITAR_CLIENTE;
       this.subtitulo = TextosService.SUBTITULO_PAGINA_EDITAR_CLIENTE;
@@ -53,7 +53,6 @@ export class ClienteEditComponent implements OnInit {
         .subscribe((res: any) => {             
           this.form.controls['nombre'].setValue(res.cliente.nombre)
         })    
-
   }
 
   get nombre() {

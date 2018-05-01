@@ -6,6 +6,8 @@ import { ClientesService } from '../../../services/clientes.service';
 import { Cliente } from '../../../models/cliente.model';
 import { TextosService } from '../../../services/textos.service';
 
+import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-cliente-list',
@@ -18,6 +20,9 @@ export class ClienteListComponent implements OnInit {
   private clientes    : Cliente[] = [];
   private subscription: Subscription;
   private sinDatos    : string  = "";
+  private atencion    : string;
+  private aceptar     : string;
+  private error       : string;
   private hayDatos    : boolean = false;
   private total       : number  = 0;
   private desde       : number  = 0;
@@ -27,7 +32,10 @@ export class ClienteListComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.setTitle(TextosService.TITULO_PAGINA_CLIENTES);
   	this.sinDatos = TextosService.SIN_DATOS;
-  	this.obtenerClientes();
+    this.atencion = TextosService.ATENCION;
+    this.aceptar  = TextosService.ACEPTAR;
+    this.error    = TextosService.IMPOSIBLE_COMPLETAR_ACCION;
+  	this.obtenerClientes();    
   }
 
   obtenerClientes() {
@@ -38,7 +46,10 @@ export class ClienteListComponent implements OnInit {
           		this.total = res.total
   				this.hayDatos = this.total > 0
   			},
-  			(err: any) => console.log(err)
+  			(err: any) => {
+          console.log(err);
+          $('#modalError').click();
+        }
   		)  	
   }
 
@@ -59,7 +70,10 @@ export class ClienteListComponent implements OnInit {
           this.total = res.total
           this.hayDatos = res.clientes.length > 0
         },
-        (err: any) => console.log(err)
+        (err: any) => {
+          console.log(err);
+          $('#modalError').click();
+        }
       )   
   }
 
@@ -70,4 +84,9 @@ export class ClienteListComponent implements OnInit {
     this.desde += valor;
     this.obtenerClientes();
   }
+
+  showModal() {
+    $('#modalError').click();
+  }
 }
+
