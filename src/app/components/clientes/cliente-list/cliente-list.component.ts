@@ -5,9 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { ClientesService } from '../../../services/clientes.service';
 import { Cliente } from '../../../models/cliente.model';
 import { TextosService } from '../../../services/textos.service';
-
 import * as $ from 'jquery';
-
 
 @Component({
   selector: 'app-cliente-list',
@@ -23,7 +21,7 @@ export class ClienteListComponent implements OnInit {
   private atencion    : string;
   private aceptar     : string;
   private error       : string;
-  private hayDatos    : boolean = false;
+  private hayDatos    : boolean = true;
   private total       : number  = 0;
   private desde       : number  = 0;
 
@@ -83,10 +81,6 @@ export class ClienteListComponent implements OnInit {
     if ((desde > this.total) || (desde < 0)) return;
     this.desde += valor;
     this.obtenerClientes();
-  }
-
-  showModal() {
-    $('#modalError').click();
-  }
+  }  
 }
 

@@ -12,11 +12,13 @@ import { TextosService } from '../../../services/textos.service';
   styles: []
 })
 export class SoftwareListComponent implements OnInit {
-  private titulo      : string = TextosService.TITULO_PAGINA_SOFTWARE;
-  private subtitulo   : string = TextosService.SUBTITULO_PAGINA_SOFTWARE;
   private softwares   : Software[] = [];
   private subscription: Subscription;
-  private sinDatos    : string  = "";
+  private sinDatos    : string;
+  private subtitulo   : string;
+  private atencion    : string;
+  private error       : string;
+  private aceptar     : string;
   private hayDatos    : boolean = false;
   private total       : number  = 0;
   private desde       : number  = 0;
@@ -25,7 +27,11 @@ export class SoftwareListComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle(TextosService.TITULO_PAGINA_SOFTWARE);
-  	this.sinDatos = TextosService.SIN_DATOS;
+    this.subtitulo = TextosService.SUBTITULO_PAGINA_SOFTWARE;
+  	this.sinDatos  = TextosService.SIN_DATOS;
+    this.atencion  = TextosService.ATENCION;
+    this.aceptar   = TextosService.ACEPTAR;
+    this.error     = TextosService.IMPOSIBLE_COMPLETAR_ACCION;
   	this.obtenerSoftwares();
   }
 
@@ -37,7 +43,10 @@ export class SoftwareListComponent implements OnInit {
   				this.hayDatos = res.total > 0;  				
   				this.total = (this.hayDatos) ? res.total : 0;          
   			},
-  			(err: any) => console.log(err)
+  			(err: any) => {
+          console.log(err);
+          $('#modalError').click();
+        }
   		)  	
   }
 
@@ -58,7 +67,10 @@ export class SoftwareListComponent implements OnInit {
           this.total = res.total
           this.hayDatos = res.software.length > 0
         },
-        (err: any) => console.log(err)
+        (err: any) => {
+          console.log(err);
+          $('#modalError').click();
+        }
       )   
   }
 

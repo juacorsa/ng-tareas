@@ -7,6 +7,7 @@ import { ClientesService } from '../../../services/clientes.service';
 import { TextosService } from '../../../services/textos.service';
 import { ToastrService } from 'ngx-toastr';
 import { Cliente } from '../../../models/cliente.model';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-cliente-edit',
@@ -14,15 +15,19 @@ import { Cliente } from '../../../models/cliente.model';
   styles: []
 })
 export class ClienteEditComponent implements OnInit {
-  private form: FormGroup
-  private titulo   : string
-  private subtitulo: string
-  private cliente  : string
-  private cancelar : string
-  private id: string  
-  private validacionNombreRequired : string
-  private validacionNombreMinlength: string
-  private guardarCambios: string
+  private form: FormGroup;
+  private titulo   : string;
+  private subtitulo: string;
+  private cliente  : string;
+  private cancelar : string;
+  private atencion : string;
+  private aceptar  : string;
+  private error: string;  
+  private id   : string;
+  private validacionNombreRequired : string;
+  private validacionNombreMinlength: string;
+  private guardarCambios: string;
+  private placeholder: string;
 
   constructor(private fb: FormBuilder, 
               private router: Router,
@@ -41,9 +46,13 @@ export class ClienteEditComponent implements OnInit {
       this.titulo    = TextosService.TITULO_PAGINA_EDITAR_CLIENTE;
       this.subtitulo = TextosService.SUBTITULO_PAGINA_EDITAR_CLIENTE;
       this.cancelar  = TextosService.CANCELAR;
+      this.atencion  = TextosService.ATENCION;
+      this.aceptar   = TextosService.ACEPTAR;
+      this.error     = TextosService.IMPOSIBLE_COMPLETAR_ACCION;
       this.validacionNombreRequired  = TextosService.VALIDACION_CAMPO_REQUERIDO;
       this.validacionNombreMinlength = TextosService.VALIDACION_CAMPO_MINIMO_3;
       this.guardarCambios = TextosService.GUARDAR_CAMBIOS;
+      this.placeholder = TextosService.PLACEHOLDER_NOMBRE_CLIENTE;
 
       this.form = this.fb.group({
         'nombre': ['', [Validators.required, Validators.minLength(3)]]
@@ -75,7 +84,8 @@ export class ClienteEditComponent implements OnInit {
           this.volver()
         },
         (err) => {
-          console.log(err)                    
+          console.log(err);
+          $('#modalError').click();                  
         }
       )    	
   }

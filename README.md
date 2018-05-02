@@ -2,6 +2,10 @@
 
 Este proyecto se ha generado con [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
+## Commit 6 - 02-05-2018  
+
+Se termina de incluir la venta modal de error en clientes, proveedores y software  
+
 ## Commit 5 - 01-05-2018
 
 Se termina el crud de software  

@@ -20,6 +20,9 @@ export class SoftwareEditComponent implements OnInit {
   private cliente  : string;
   private cancelar : string;
   private placeholder: string;
+  private atencion   : string;
+  private error      : string;
+  private aceptar    : string;
   private id: string;
   private validacionNombreRequired : string;
   private validacionNombreMinlength: string;
@@ -46,6 +49,9 @@ export class SoftwareEditComponent implements OnInit {
       this.validacionNombreRequired  = TextosService.VALIDACION_CAMPO_REQUERIDO;
       this.validacionNombreMinlength = TextosService.VALIDACION_CAMPO_MINIMO_3;
       this.guardarCambios = TextosService.GUARDAR_CAMBIOS;
+      this.atencion  = TextosService.ATENCION;
+      this.aceptar   = TextosService.ACEPTAR;
+      this.error     = TextosService.IMPOSIBLE_COMPLETAR_ACCION;
 
       this.form = this.fb.group({
         'nombre': ['', [Validators.required, Validators.minLength(3)]]
@@ -78,7 +84,8 @@ export class SoftwareEditComponent implements OnInit {
           this.volver()
         },
         (err) => {
-          console.log(err)                    
+          console.log(err);
+          $('#modalError').click();                  
         }
       )    	
   }

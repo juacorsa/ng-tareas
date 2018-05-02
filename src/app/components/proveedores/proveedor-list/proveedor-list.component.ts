@@ -5,27 +5,34 @@ import { Title } from '@angular/platform-browser';
 import { ProveedoresService } from '../../../services/proveedores.service';
 import { Proveedor } from '../../../models/proveedor.model';
 import { TextosService } from '../../../services/textos.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-proveedor-list',
   templateUrl: './proveedor-list.component.html'  
 })
-export class ProveedorListComponent implements OnInit, OnDestroy {    
-  private titulo      : string = TextosService.TITULO_PAGINA_PROVEEDORES
-  private subtitulo   : string = TextosService.SUBTITULO_PAGINA_PROVEEDORES
-  private proveedores : Proveedor[] = []
-  private subscription: Subscription  
-  private sinDatos    : string  = ""
-  private hayDatos    : boolean = false
-  private total       : number  = 0
-  private desde       : number  = 0
+export class ProveedorListComponent implements OnInit, OnDestroy {      
+  private proveedores : Proveedor[] = [];
+  private subscription: Subscription;
+  private sinDatos    : string;
+  private subtitulo   : string;
+  private atencion    : string;
+  private aceptar     : string;
+  private error       : string;
+  private hayDatos    : boolean = true;
+  private total       : number  = 0;
+  private desde       : number  = 0;
 
   constructor(private servicio: ProveedoresService, private titleService: Title) { }
 
   ngOnInit() {
-    this.titleService.setTitle(TextosService.TITULO_PAGINA_PROVEEDORES)   
-  	this.sinDatos = TextosService.SIN_DATOS
-  	this.obtenerProveedores()
+    this.titleService.setTitle(TextosService.TITULO_PAGINA_PROVEEDORES);
+    this.subtitulo = TextosService.SUBTITULO_PAGINA_PROVEEDORES;
+  	this.sinDatos  = TextosService.SIN_DATOS;
+    this.atencion  = TextosService.ATENCION;
+    this.aceptar   = TextosService.ACEPTAR;
+    this.error     = TextosService.IMPOSIBLE_COMPLETAR_ACCION;
+  	this.obtenerProveedores();
   }
 
   obtenerProveedores() {
@@ -36,7 +43,10 @@ export class ProveedorListComponent implements OnInit, OnDestroy {
           this.total = res.total
   				this.hayDatos = this.total > 0
   			},
-  			(err: any) => console.log(err)
+  			(err: any) => {
+          console.log(err);
+          $('#modalError').click();
+        }
   		)  	
   }
 
@@ -57,7 +67,10 @@ export class ProveedorListComponent implements OnInit, OnDestroy {
           this.total = res.total
           this.hayDatos = res.proveedores.length > 0
         },
-        (err: any) => console.log(err)
+        (err: any) => {
+          console.log(err);
+          $('#modalError').click();
+        }
       )   
   }
 

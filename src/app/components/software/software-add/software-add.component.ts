@@ -13,13 +13,17 @@ import { ToastrService } from 'ngx-toastr';
   styles: []
 })
 export class SoftwareAddComponent implements OnInit {
-  private form: FormGroup    
-  private titulo   : string
-  private subtitulo: string
-  private registrar: string
-  private cancelar : string
-  private validacionNombreRequired : string
-  private validacionNombreMinlength: string  
+  private form: FormGroup;    
+  private titulo   : string;
+  private subtitulo: string;
+  private registrar: string;
+  private cancelar : string;
+  private atencion : string;
+  private aceptar  : string;
+  private error    : string;  
+  private validacionNombreRequired : string;
+  private validacionNombreMinlength: string;
+  private placeholder: string; 
 
   constructor(private fb: FormBuilder, 
               private router: Router,
@@ -37,6 +41,10 @@ export class SoftwareAddComponent implements OnInit {
       this.subtitulo = TextosService.SUBTITULO_PAGINA_NUEVO_SOFTWARE;
       this.registrar = TextosService.REGISTRAR_SOFTWARE;
       this.cancelar  = TextosService.CANCELAR;
+      this.atencion  = TextosService.ATENCION;
+      this.aceptar   = TextosService.ACEPTAR;
+      this.error     = TextosService.IMPOSIBLE_COMPLETAR_ACCION;
+      this.placeholder = TextosService.PLACEHOLDER_NOMBRE_SOFTWARE;      
       this.validacionNombreRequired  = TextosService.VALIDACION_CAMPO_REQUERIDO;
       this.validacionNombreMinlength = TextosService.VALIDACION_CAMPO_MINIMO_3  
     }
@@ -61,16 +69,9 @@ export class SoftwareAddComponent implements OnInit {
           this.form.reset()                      
         },
         (err) => {
-          console.log(err)                                                          
+          console.log(err);
+          $('#modalError').click();                                                         
         }
       )  	
   } 
-
-
-
-
-
-
-
-
 }
