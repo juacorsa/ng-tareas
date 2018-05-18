@@ -1,21 +1,3 @@
-/*
-const express = require('express');
-const router = express.Router();
-
-const ProveedoresController = require('../controllers/proveedores');
-
-router.post("/", ProveedoresController.createProveedor);
-
-router.get("/", ProveedoresController.getProveedores);
-
-router.get("/:id", ProveedoresController.getProveedor);
-
-router.put("/:id", ProveedoresController.updateProveedor);
-
-router.get("/buscar/:termino", ProveedoresController.searchProveedores);
-
-module.exports = router;*/
-
 const {Proveedor, validar} = require('../models/proveedor');
 const mongoose = require('mongoose');
 const config = require('config');

@@ -1,20 +1,3 @@
-/*
-const express = require('express');
-const router = express.Router();
-
-const ClientesController = require('../controllers/clientes');
-
-router.post("/", ClientesController.createCliente);
-
-router.get("/", ClientesController.getClientes);
-
-router.get("/:id", ClientesController.getCliente);
-
-router.put("/:id", ClientesController.updateCliente);
-
-router.get("/buscar/:termino", ClientesController.searchClientes);*/
-
-
 const {Cliente, validar} = require('../models/cliente');
 const mongoose = require('mongoose');
 const config = require('config');
@@ -71,19 +54,5 @@ router.put('/:id', async (req, res) => {
 	
 	res.send(cliente);
 });
-
-module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;

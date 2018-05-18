@@ -2,6 +2,10 @@
 
 Este proyecto se ha generado con [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
+## Commit 9 - 18-05-2018  
+
+Se rediseña el backend de software para adaptarlo a la filosofía async/await
+
 ## Commit 8 - 18-05-2018  
 
 Se rediseña el backend de clientes para adaptarlo a la filosofía async/await
