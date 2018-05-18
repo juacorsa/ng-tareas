@@ -38,3 +38,10 @@
 {"level":"info","message":"Conectado a MongoDB...","timestamp":"2018-05-18T14:27:26.693Z"}
 {"level":"info","message":"Conectado a MongoDB...","timestamp":"2018-05-18T14:27:55.966Z"}
 {"level":"info","message":"Conectado a MongoDB...","timestamp":"2018-05-18T14:30:01.315Z"}
+{"level":"info","message":"Conectado a MongoDB...","timestamp":"2018-05-18T14:41:17.456Z"}
+{"level":"info","message":"Conectado a MongoDB...","timestamp":"2018-05-18T16:34:19.050Z"}
+{"level":"info","message":"Conectado a MongoDB...","timestamp":"2018-05-18T16:35:01.096Z"}
+{"level":"info","message":"Conectado a MongoDB...","timestamp":"2018-05-18T16:36:53.749Z"}
+{"level":"info","message":"Conectado a MongoDB...","timestamp":"2018-05-18T16:37:49.061Z"}
+{"message":"clientes is not defined","stack":"ReferenceError: clientes is not defined\n    at router.get (D:\\Proyectos\\Angular\\tareas\\server\\routes\\clientes.js:45:2)\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","level":"error","timestamp":"2018-05-18T16:39:54.650Z"}
+{"level":"info","message":"Conectado a MongoDB...","timestamp":"2018-05-18T16:40:17.550Z"}
