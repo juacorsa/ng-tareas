@@ -7,6 +7,9 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
+import { Ng2OrderModule } from 'ng2-order-pipe';
+
+
 // Componentes
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -60,7 +63,9 @@ import { TextosService } from '../app/services/textos.service';
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
+    Ng2OrderModule,
     BrowserAnimationsModule, 
+    
     ToastrModule.forRoot() 
   ],
   providers: [

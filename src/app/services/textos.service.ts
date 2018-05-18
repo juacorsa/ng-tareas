@@ -11,8 +11,9 @@ export class TextosService {
   static SIN_DATOS 			       : string = "Oopss!!. Al parecer no hay datos que mostrar ...."
   static GUARDAR_CAMBIOS 	     : string = " Guardar cambios"
   static IMPOSIBLE_COMPLETAR_ACCION : string = "Ha sido imposible completar la acción solicitada. Por favor, vuelva a intentarlo y si la situación persiste contacte con el administrador de la aplicación."
-
   static TITULO_PAGINA_NO_ENCONTRADA: string = "Opps!!. Página no encontrada"
+  static ANTERIOR : string = "Anterior";
+  static SIGUIENTE: string = "Siguiente";
 
   // Textos de proveedores
   static TITULO_PAGINA_NUEVO_PROVEEDOR    : string = "Registrar un nuevo proveedor"

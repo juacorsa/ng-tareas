@@ -22,11 +22,14 @@
 	<thead class="thead-light">
 		<tr>
 			<td class="editar text-center">Editar</td>
-			<td>Proveedor</td>						
+			<td class="pointer" (click)="ordenar('nombre')">Proveedor
+				<i class="fas fa-sort-down" *ngIf="!reverse"></i>
+				<i class="fas fa-sort-up" *ngIf="reverse"></i>
+			</td>						
 		</tr>			
 	</thead>
 	<tbody>
-		<tr *ngFor="let proveedor of proveedores">
+		<tr *ngFor="let proveedor of proveedores | orderBy: campo : reverse">
 			<td class="text-center">
 				<a class="btn btn-primary" routerLink='/proveedores/{{proveedor._id}}/edit'>
 					<i class="fa fa-bars"></i>
@@ -37,6 +40,7 @@
 	</tbody>
 	</table>
 </div>
+<!--
 <div class="col-md-6">	
 	<button class="btn btn-dark" (click)="actualizarDesde(-8)">
 		<i class="fa fa-arrow-circle-left"></i> Anterior
@@ -44,6 +48,16 @@
 	<button class="btn btn-dark" (click)="actualizarDesde(8)">
 		<i class="fa fa-arrow-alt-circle-right"></i> Siguiente
 	</button>
+</div>-->
+
+<div class="col-md-6">	
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" (click)="actualizarDesde(-8)">{{ anterior }}</a></li>
+    <li class="page-item"><a class="page-link" (click)="actualizarDesde(8)">{{ siguiente }}</a></li>
+  </ul>
+</nav>
 </div>
+
 </ng-template>
 			
