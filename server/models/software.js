@@ -1,10 +1,27 @@
+
 const mongoose = require('mongoose');
+const Joi = require('joi');
 
-const softwareSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    nombre: { type: String, index: true }
-});
+const Software =  mongoose.model('Software', new mongoose.Schema({
+    nombre: { 
+    	type: String,
+    	required: true,
+    	minlength: 3,
+    	maxlength: 50,
+    	index: true,
+    	trim: true
+    }
+}));
 
-module.exports = mongoose.model('Software', softwareSchema);
+function validarSoftware(software) {
+	const schema = {
+		nombre : Joi.string().min(3).max(50).required()		
+	};
+
+	return Joi.validate(software, schema);
+}
+
+exports.Software = Software;
+exports.validar = validarSoftware;
 
 
