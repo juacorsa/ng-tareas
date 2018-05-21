@@ -1,14 +1,40 @@
+
 const mongoose = require('mongoose');
+const Joi = require('joi');
 
-const LicenciaSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    cliente:  { type: mongoose.Schema.Types.ObjectId, ref: 'Cliente' },
-    software: { type: mongoose.Schema.Types.ObjectId, ref: 'Software' },
-    unidades: { type: Number, default: 1 },
-    caducidad: { type: Date },
-    observaciones: { type: String }
-});
+const Licencia =  mongoose.model('Licencia', new mongoose.Schema({
+    observaciones: { 
+    	type: String
+    },
+    unidades: {
+    	type: Number,
+    	default: 1
+    },
+    caducidad: {
+    	type: Date,
+    	required: true
+    },
+    cliente: { 
+    	type: mongoose.Schema.Types.ObjectId, 
+    	ref: 'Cliente'
+    },
+	software: { 
+		type: mongoose.Schema.Types.ObjectId, 
+		ref: 'Software' 
+	}
+}));
 
-module.exports = mongoose.model('Licencia', LicenciaSchema);
+function validarLicencia(licencia) {
+	const schema = {
+		observaciones: Joi.string().allow(''),
+		unidades : Joi.number().integer().min(1),
+		caducidad: Joi.date().required().min('now'),
+		cliente  : Joi.objectId().required(),
+		software : Joi.objectId().required()
+	};
 
+	return Joi.validate(licencia, schema);
+}
 
+exports.Licencia = Licencia;
+exports.validar = validarLicencia;
