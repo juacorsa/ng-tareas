@@ -1,4 +1,4 @@
-
+const validarObjectId = require('../middleware/validarObjectId');
 const {Licencia, validar} = require('../models/licencia');
 const mongoose = require('mongoose');
 const config = require('config');
@@ -25,7 +25,7 @@ router.get('/count', async (req, res) => {
 	res.send(licencias.toString());
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', validarObjectId, async (req, res) => {
 	const licencia = await Licencia.findById(req.params.id);
 
 	if (!licencia) return res.status(400).send('Licencia no encontrada!!')
@@ -49,7 +49,7 @@ router.post('/', async (req, res) => {
 	res.send(licencia);
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', validarObjectId, async (req, res) => {
 	const { error } = validar(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
 	
@@ -66,7 +66,7 @@ router.put('/:id', async (req, res) => {
 	res.send(licencia);
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', validarObjectId, async (req, res) => {
 	const licencia = await Licencia.findByIdAndRemove(req.params.id);
 
 	if (!licencia) return res.status(400).send('Licencia no encontrada!!')

@@ -1,3 +1,4 @@
+const validarObjectId = require('../middleware/validarObjectId');
 const {Software, validar} = require('../models/software');
 const mongoose = require('mongoose');
 const config = require('config');
@@ -22,7 +23,7 @@ router.get('/count', async (req, res) => {
 	res.send(software.toString());
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', validarObjectId, async (req, res) => {
 	const software = await Software.findById(req.params.id);
 
 	if (!software) return res.status(400).send('Software no encontrado')
@@ -42,7 +43,7 @@ router.post('/', async (req, res) => {
 	res.send(software);
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', validarObjectId, async (req, res) => {
 	const { error } = validar(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
 	

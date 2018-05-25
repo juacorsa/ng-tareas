@@ -2,6 +2,14 @@
 
 Este proyecto se ha generado con [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
+## Commit 11 - 25-05-2018  
+
+Se crea el middleware validarObjectId.
+
+## Commit 10 - 21-05-2018  
+
+Se rediseña el backend de licencias para adaptarlo a la filosofía async/await
+
 ## Commit 9 - 18-05-2018  
 
 Se rediseña el backend de software para adaptarlo a la filosofía async/await

@@ -1,3 +1,4 @@
+const validarObjectId = require('../middleware/validarObjectId');
 const {Cliente, validar} = require('../models/cliente');
 const mongoose = require('mongoose');
 const config = require('config');
@@ -22,7 +23,7 @@ router.get('/count', async (req, res) => {
 	res.send(clientes.toString());
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', validarObjectId, async (req, res) => {
 	const cliente = await Cliente.findById(req.params.id);
 
 	if (!cliente) return res.status(400).send('Cliente no encontrado')
@@ -42,7 +43,7 @@ router.post('/', async (req, res) => {
 	res.send(cliente);
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', validarObjectId, async (req, res) => {
 	const { error } = validar(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
 	

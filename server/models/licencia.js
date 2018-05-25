@@ -16,11 +16,13 @@ const Licencia =  mongoose.model('Licencia', new mongoose.Schema({
     },
     cliente: { 
     	type: mongoose.Schema.Types.ObjectId, 
-    	ref: 'Cliente'
+    	ref: 'Cliente',
+        required: true
     },
 	software: { 
 		type: mongoose.Schema.Types.ObjectId, 
-		ref: 'Software' 
+		ref: 'Software',
+        required: true
 	}
 }));
 

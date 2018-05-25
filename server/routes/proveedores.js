@@ -1,3 +1,4 @@
+const validarObjectId = require('../middleware/validarObjectId');
 const {Proveedor, validar} = require('../models/proveedor');
 const mongoose = require('mongoose');
 const config = require('config');
@@ -22,7 +23,7 @@ router.get('/count', async (req, res) => {
 	res.send(proveedores.toString());
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', validarObjectId, async (req, res) => {
 	const proveedor = await Proveedor.findById(req.params.id);
 
 	if (!proveedor) return res.status(400).send('Proveedor no encontrado')
@@ -42,7 +43,7 @@ router.post('/', async (req, res) => {
 	res.send(proveedor);
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', validarObjectId, async (req, res) => {
 	const { error } = validar(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
 	
