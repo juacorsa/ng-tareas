@@ -1,8 +1,12 @@
 
 const mongoose = require('mongoose');
 const winston  = require('winston');
+const config = require('config');
 
 module.exports = function() {
-	mongoose.connect('mongodb://admin:admin2018@ds113799.mlab.com:13799/tareas')
-		.then(() => winston.info('Conectado a MongoDB...'));
+	const db = config.get('db');
+
+	mongoose.connect(db)
+		.then(() => winston.info(`Conectado a ${db}`));
+
 }

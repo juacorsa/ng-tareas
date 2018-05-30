@@ -9,4 +9,6 @@ require('./up/logging.js')();
 require('./up/db.js')();
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Escuchando en puerto ${port} ...`)); 
+const server = app.listen(port, () => console.log(`Servidor escuchando en puerto ${port} ...`)); 
+
+module.exports = server;

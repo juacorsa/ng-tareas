@@ -1,6 +1,5 @@
-
 {
-    "db": "mongodb://admin:admin2018@ds113799.mlab.com:13799/tareas",
+	"db": "mongodb://localhost:27017/tareas",
 	"libros_por_pagina": 10,
 	"proveedores_por_pagina": 10,
 	"clientes_por_pagina": 10,

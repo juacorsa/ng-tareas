@@ -1,4 +1,4 @@
-const validarObjectId = require('../middleware/validarObjectId');
+	const validarObjectId = require('../middleware/validarObjectId');
 const {Proveedor, validar} = require('../models/proveedor');
 const mongoose = require('mongoose');
 const config = require('config');
