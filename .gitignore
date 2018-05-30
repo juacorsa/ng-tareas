@@ -44,3 +44,4 @@ testem.log
 Thumbs.db
 /server/config.js
 /server/node_modules
+tareas.log

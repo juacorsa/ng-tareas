@@ -2,6 +2,10 @@
 
 Este proyecto se ha generado con [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
+## Commit 12 - 30-05-2018  
+
+Se crean los tests de clientes y proveedores
+
 ## Commit 11 - 25-05-2018  
 
 Se crea el middleware validarObjectId.
