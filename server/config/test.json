@@ -1,5 +1,5 @@
 {
-	"db": "mongodb://localhost:27017/tareas",
+	 "db": "mongodb://localhost:27017/tareas",
 	"libros_por_pagina": 10,
 	"proveedores_por_pagina": 10,
 	"clientes_por_pagina": 10,

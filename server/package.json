@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --forceExit --verbose"
+    "test": "mocha --timeout 10000 --colors --exit"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,8 @@
     "winston": "^2.4.2"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
     "jest": "^23.0.0",
     "nodemon": "^1.17.2",
     "supertest": "^3.1.0"

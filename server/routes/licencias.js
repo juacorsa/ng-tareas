@@ -39,10 +39,10 @@ router.post('/', async (req, res) => {
 			
 	const licencia = new Licencia({
 		observaciones: req.body.observaciones,
-		unidades: req.body.unidades,
+		unidades : req.body.unidades,
 		caducidad: req.body.caducidad,
-		cliente: req.body.cliente,
-		software: req.body.software
+		cliente  : req.body.cliente,
+		software : req.body.software
 	});	
 
 	await licencia.save();
