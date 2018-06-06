@@ -11,11 +11,19 @@ const {Proveedor} = require('../models/proveedor');
 chai.use(chaiHttp);
 
 describe('Proveedores', () => {
-   let url = "/api/proveedores/";
-
+    let url = "/api/proveedores/";
+    let proveedor;
+    let nombre;
+    
     beforeEach(async () => { 
         await Proveedor.remove({});        
     });
+
+    const insertarProveedor = async () => {
+        nombre  = 'proveedor2';
+        proveedor = new Proveedor({nombre});
+        return await proveedor.save();
+    };    
 
     describe('GET /', () => {
       it('debe devolver todos los proveedores', async () => {
@@ -28,9 +36,10 @@ describe('Proveedores', () => {
 
     describe('GET /:id', () => {
       it('debe devolver 404 si el id no es valido ', async () => {
-        const nombre = 'proveedor1';
-        const proveedor = new Proveedor({nombre});
-        await proveedor.save();
+        //const nombre = 'proveedor1';
+        //const proveedor = new Proveedor({nombre});
+        //await proveedor.save();
+        await insertarProveedor();
         const res = await chai.request(server).get(url + '1').send(proveedor);          
         
         res.should.have.status(404);            
@@ -39,9 +48,7 @@ describe('Proveedores', () => {
 
     describe('GET /:id', () => {
       it('debe devolver un proveedor si el id es correcto ', async () => {
-        const nombre = 'proveedor1';
-        const proveedor = new Proveedor({nombre});
-        await proveedor.save();
+        await insertarProveedor();        
         const res = await chai.request(server).get(url + proveedor._id).send(proveedor);          
         
         res.should.have.status(200);        
@@ -60,10 +67,7 @@ describe('Proveedores', () => {
       });
 
       it('no debe registrar un proveedor si ya existe', async () => {
-        const nombre = 'proveedor1';
-        let proveedor = new Proveedor({nombre});
-        await proveedor.save();
-
+        await insertarProveedor();
         proveedor = {nombre};
         const res = await chai.request(server).post(url).send(proveedor);          
         
@@ -84,20 +88,29 @@ describe('Proveedores', () => {
 
     describe('PUT /', () => {
       it('debe actualizar dado el id de proveedor', async () => {
-        const proveedor = new Proveedor({nombre: 'proveedor 1'});
-        await proveedor.save();
+        await insertarProveedor();
         const res = await chai.request(server).put(url + proveedor.id).send({nombre: 'proveedor 2'});          
         
         res.should.have.status(200);                     
       });
 
       it('no debe actualizar un proveedor si no se facilita el nombre', async () => {
-        const proveedor = new Proveedor({nombre: 'proveedor 1'});
-        await proveedor.save();
+        await insertarProveedor();        
         const res = await chai.request(server).put(url + proveedor.id).send({nombre: ''});          
         
         res.should.have.status(400);                     
       });
+    });
 
+    describe('GET /count', () => {
+      it('debe devolver el numero de proveedores', async () => {
+        await insertarProveedor();
+        const res = await chai.request(server).get(url + 'count');
+        
+        res.should.have.status(200);  
+        res.text.should.be.a('string').eql('1');
+      });      
     });
 });
+
+
