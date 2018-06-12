@@ -61,7 +61,7 @@ router.put('/:id', validarObjectId, async (req, res) => {
 		software : req.body.software
 	}, { new: true });
 
-	if (!licencia) return res.status(400).send('Licencia no encontrada!!')
+	if (!licencia) return res.status(404).send('Licencia no encontrada!!')
 	
 	res.send(licencia);
 });

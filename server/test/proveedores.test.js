@@ -36,11 +36,8 @@ describe('Proveedores', () => {
 
     describe('GET /:id', () => {
       it('debe devolver 404 si el id no es valido ', async () => {
-        //const nombre = 'proveedor1';
-        //const proveedor = new Proveedor({nombre});
-        //await proveedor.save();
         await insertarProveedor();
-        const res = await chai.request(server).get(url + '1').send(proveedor);          
+        const res = await chai.request(server).get(url + '1');
         
         res.should.have.status(404);            
       });

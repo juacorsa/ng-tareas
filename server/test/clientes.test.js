@@ -35,9 +35,9 @@ describe('Clientes', () => {
     });
 
     describe('GET /:id', () => {
-      it('debe devolver 404 si el id no es valido ', async () => {
+      it('debe devolver un error 404 si el id de cliente no es valido ', async () => {
         await insertarCliente();
-        const res = await chai.request(server).get(url + '1').send(cliente);          
+        const res = await chai.request(server).get(url + '1');
         
         res.should.have.status(404);            
       });

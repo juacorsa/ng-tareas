@@ -2,6 +2,14 @@
 
 Este proyecto se ha generado con [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
+## Commit 16 - 12-06-2018  
+
+Se crean los tests de las licencias usando mocha, chai y chai-http
+
+## Commit 15 - 06-06-2018  
+
+Se crean los tests de software usando mocha, chai y chai-http
+
 ## Commit 14 - 06-06-2018  
 
 Se crean los tests de clientes usando mocha, chai y chai-http
