@@ -2,6 +2,11 @@
 
 Este proyecto se ha generado con [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
+## Commit 17 - 15-06-2018  
+
+Los mensajes de error se meten en un fichero config
+Se instala http-status-codes y se usa los nombres que ofrece esta librería
+
 ## Commit 16 - 12-06-2018  
 
 Se crean los tests de las licencias usando mocha, chai y chai-http

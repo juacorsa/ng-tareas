@@ -1,9 +1,9 @@
-
+	
 const express = require('express');
 const error = require('../middleware/error');
 const proveedores = require('../routes/proveedores');
-const clientes = require('../routes/clientes');
-const software = require('../routes/software');
+const clientes  = require('../routes/clientes');
+const software  = require('../routes/software');
 const licencias = require('../routes/licencias');
 
 module.exports = function(app) {
